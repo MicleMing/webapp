@@ -3,7 +3,7 @@
  */
 angular.module('ngMyApp').config(['$routeProvider',function($routeProvider){
     $routeProvider.when('/',{
-        templateUrl:'',
-        controller:'app/view/home.html'
+        templateUrl:'app/view/home.html',
+        controller:'baseCtr1'
     })
 }])
