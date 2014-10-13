@@ -4,5 +4,8 @@
 
 'use strict';
 angular.module('ngMyApp',[
-    'ngRoute'
+    'myApp.router',
+    'baseController',
+    'baseFilter',
+    ''
 ])

@@ -11,8 +11,8 @@
     <script src="lib/angular/angular.js"> </script>
     <script src="lib/angular/angular.route.js"> </script>
     <script src="scripts/config/data.js"> </script>
-    <script src="scripts/controller/base/base.js"></script>
-    <script src="scripts/filters/base/base.js"> </script>
+    <script src="scripts/controller/base/baseCtr.js"></script>
+    <script src="scripts/filters/base/baseFilters.js"> </script>
 
     <script src="scripts/app.js"> </script>
     <script src="scripts/router.js"> </script>
@@ -21,6 +21,10 @@
     <title>my webapp</title>
 </head>
 <body>
+    <ul>
+        <li><a href="#/view1">view1</a> </li>
+        <li><a href="#/view2">view2</a> </li>
+    </ul>
     <ng-view></ng-view>
 </body>
 </html>
