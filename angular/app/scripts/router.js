@@ -5,12 +5,16 @@ angular.module('myApp.router',[
     'ngRoute'
 ]).config(['$routeProvider',function($routeProvider){
     $routeProvider
-        .when('/view1',{
-        templateUrl:'views/home.html',
-        controller:'baseCtr1'
+        .when('/',{
+            templateUrl:'views/home.html',
+            controller:'baseCtrl'
         })
-        .when('/view2',{
-                templateUrl:'views/footer.html',
-                controller:'baseCtrl'
+        .when('/home',{
+            templateUrl:'views/home.html',
+            controller:'baseCtrl'
+        })
+        .when('/template',{
+            templateUrl:'views/template.html',
+            controller:'templateCtl'
         })
 }])

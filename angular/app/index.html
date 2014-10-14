@@ -6,13 +6,18 @@
     <meta http-equiv="Expires" content="0" />
     <meta http-equiv="Pragma" content="no-cache"/>
     <!----- style ---------->
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css"/>
 
+    <link rel="stylesheet" href="styles/backToTop.css"/>
     <!------ js  ------------>
+    <script src="lib/jquery/jquery.js"> </script>
     <script src="lib/angular/angular.js"> </script>
     <script src="lib/angular/angular.route.js"> </script>
     <script src="scripts/config/data.js"> </script>
     <script src="scripts/controller/base/baseCtr.js"></script>
     <script src="scripts/filters/base/baseFilters.js"> </script>
+    <script src="scripts/controller/templateCtr.js"> </script>
+    <script src="scripts/directives/base/baseDirective.js"></script>
 
     <script src="scripts/app.js"> </script>
     <script src="scripts/router.js"> </script>
@@ -20,11 +25,26 @@
 
     <title>my webapp</title>
 </head>
-<body>
-    <ul>
-        <li><a href="#/view1">view1</a> </li>
-        <li><a href="#/view2">view2</a> </li>
-    </ul>
-    <ng-view></ng-view>
+<body class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <div ng-include="'./views/common/header.html'"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <ng-view></ng-view>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div ng-include="'./views/common/footer.html'"></div>
+        </div>
+    </div>
+    <back-to-top></back-to-top>
+
 </body>
 </html>

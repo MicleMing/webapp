@@ -4,6 +4,6 @@
  */
 var baseController = angular.module('baseController',[]);
 
-baseController.controller('baseCtr1',['$scope',function($scope){
+baseController.controller('baseCtrl',['$scope',function($scope){
 
 }])
