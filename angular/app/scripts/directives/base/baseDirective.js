@@ -8,15 +8,17 @@ baseDirective
             restrict:'AE',
             templateUrl:'views/directiveTemplate/backToTop.html',
             link:function(scope,elem,attr){
-                elem.hide();
+                var firstLink = $(elem.children()[0]).children('a.toTop');
+                firstLink.hide();
+                console.log()
                 $(window).scroll(function(){
-                    if($(window).scrollTop()>200){
-                        elem.fadeIn(1000);
+                    if($(window).scrollTop()>100){
+                        firstLink.fadeIn(500);
                     }else{
-                        elem.fadeOut(1000)
+                        firstLink.fadeOut(500)
                     }
                 })
-                elem.bind('click',function(){
+                firstLink.bind('click',function(){
                     $('html,body').animate({scrollTop:0},500);
                     return false;
                 })
