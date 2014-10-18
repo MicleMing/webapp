@@ -1,0 +1,14 @@
+<div class="cascading-wrap">
+    <div>
+        <input class="form-control" type="text" placeholder="请选择" ng-model="name" ng-focus="open()">
+        <span ng-class="{true:'glyphicon glyphicon-chevron-down',false:'glyphicon glyphicon-chevron-up'}[show]" ng-click="open()"></span>
+    </div>
+    <div ng-show="show" class="cascading">
+        <span class="glyphicon glyphicon-remove" ng-click="show=false"></span>
+        <ul>
+            <li ng-repeat="item in main">
+
+            </li>
+        </ul>
+    </div>
+</div>

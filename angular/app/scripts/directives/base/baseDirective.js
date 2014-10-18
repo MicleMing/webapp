@@ -25,3 +25,20 @@ baseDirective
             }
         }
     })
+    .directive('cascading',['$http','$rootScope','$timeout',function($http,$rootScope,$timeout){
+        "use strict";
+        return{
+            restrict:'E',
+            scope:{
+                source:'@source'
+            },
+            replace:true,
+            templateUrl:'views/directiveTemplate/cascading.html',
+            link:function(scope,element,attr){
+                //从json获取数据
+                $http.get(scope.source).success(function (result) {
+                    scope.main = result.data;
+                })
+            }
+        }
+    }])
