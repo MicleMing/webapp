@@ -1,0 +1,13 @@
+footer ul{
+    width:25%;
+    height: 0.5em;
+    margin:0 auto;
+}
+footer ul>li{
+    width: 25%;
+    float:left;
+    list-style-type: none;
+}
+footer p{
+    text-align: center;
+}

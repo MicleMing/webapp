@@ -14,3 +14,16 @@
 .backToTop a:hover{
     background-color: #999999;
 }
+.backToTop a:nth-child(1)>span{
+    font-size: 35px;
+    line-height: 1.4em;
+    padding-left: 6px;
+    color:#666;
+}
+.backToTop a:nth-child(2)>span{
+    font-size: 30px;
+    line-height: 1.6em;
+    padding-left: 10px;
+    color:#666;
+}
+
