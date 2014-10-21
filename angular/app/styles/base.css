@@ -1,3 +1,13 @@
+.header{
+    height: 51px;
+}
+
+footer{
+    width:100%;
+    position: fixed;
+    bottom:0;
+}
+
 footer ul{
     width:25%;
     height: 0.5em;

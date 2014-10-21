@@ -38,7 +38,11 @@ baseDirective
                 //从json获取数据
                 $http.get(scope.source).success(function (result) {
                     scope.main = result.data;
-                })
+                });
+
+                scope.setMain = function(item){
+                    console.log(item)
+                }
             }
         }
     }])
