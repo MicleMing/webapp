@@ -1,14 +1,16 @@
-<div class="cascading-wrap">
-    <div>
-        <input class="form-control" type="text" placeholder="请选择" ng-model="name" ng-focus="open()">
-        <span ng-class="{true:'glyphicon glyphicon-chevron-down',false:'glyphicon glyphicon-chevron-up'}[show]" ng-click="open()"></span>
+<div class="cascading-wrap" ng-init="show=true">
+    <div class="input-group">
+        <input class="form-control" type="text" placeholder="请选择" ng-model="name">
+        <span style="position:relative;top:0;" class="input-group-addon" ng-class="{true:'glyphicon glyphicon-chevron-up',false:'glyphicon glyphicon-chevron-down'}[show]" ng-click="show=!show"></span>
     </div>
-    <div ng-show="show" class="cascading">
-        <span class="glyphicon glyphicon-remove" ng-click="show=false"></span>
-        <ul>
-            <li ng-repeat="item in main">
-
-            </li>
-        </ul>
+    <div  ng-show="show" class="panel panel-default cascading">
+        <div class="panel-body">
+            <span class="glyphicon glyphicon-remove" ng-click="show=!show"></span>
+            <ul>
+                <li ng-repeat="item in main">
+                    {{item}}
+                </li>
+            </ul>
+        </div>
     </div>
 </div>

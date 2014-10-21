@@ -15,6 +15,6 @@ angular.module('myApp.router',[
         })
         .when('/template',{
             templateUrl:'views/template.html',
-            controller:'templateCtl'
+            controller:'templateCtrl'
         })
 }])
