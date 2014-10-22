@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-xs-4">
+        <select class="form-control" ng-model="first" ng-options="first.label for first in result">
+            <option value="">-- 请选择 --</option>
+        </select>
+    </div>
+    <div class="col-xs-4" ng-if="first.provinces">
+        <select class="form-control" ng-model="province" ng-options="province.label for province in first.provinces">
+            <option value="">--请选择--</option>
+        </select>
+    </div>
+    <div class="col-xs-4" ng-if="province.cities">
+        <select class="form-control" ng-model="city" ng-options="city.label for city in province.cities">
+            <option value="">--请选择--</option>
+        </select>
+    </div>
+    <div class="col-xs-12">
+        {{first.label}}--{{province.label}}--{{city.label}}
+    </div>
+</div>
+

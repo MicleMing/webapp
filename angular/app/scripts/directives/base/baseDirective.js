@@ -46,3 +46,20 @@ baseDirective
             }
         }
     }])
+    .directive('selectCascade',['$http',function($http){
+        "use strict";
+        return{
+            restrict:"E",
+            scope:{
+                source:"@source"
+            },
+            replace:true,
+            templateUrl:'views/directiveTemplate/selectCascade.html',
+            link:function(scope,elem,attr){
+                $http.get(scope.source).success(function(result){
+                    scope.result = result.data;
+                });
+
+            }
+        }
+    }])

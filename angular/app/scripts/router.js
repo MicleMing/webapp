@@ -17,4 +17,8 @@ angular.module('myApp.router',[
             templateUrl:'views/template.html',
             controller:'templateCtrl'
         })
+        .when('/publish',{
+            templateUrl:'views/publish.html',
+            controller:'publishCtrl'
+        })
 }])
