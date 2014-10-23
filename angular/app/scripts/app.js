@@ -7,6 +7,7 @@ angular.module('ngMyApp',[
     'myApp.router',
     'baseController',
     'templateController',
+    'publishController',
     'baseFilter',
     'baseDirective'
 ])

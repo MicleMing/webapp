@@ -56,10 +56,16 @@ baseDirective
             replace:true,
             templateUrl:'views/directiveTemplate/selectCascade.html',
             link:function(scope,elem,attr){
+                var vm = scope.vm = {};
                 $http.get(scope.source).success(function(result){
-                    scope.result = result.data;
+                    vm.result = result.data;
                 });
-
+                scope.$watch("vm.first",function(first){
+                    vm.province =null;
+                });
+                scope.$watch("vm.province",function(province){
+                    vm.city = null;
+                })
             }
         }
     }])
