@@ -1,0 +1,29 @@
+.backToTop{
+    position: fixed;
+    right: 30px;
+    bottom:50px;
+}
+.backToTop a{
+    display: block;
+    width: 50px;
+    height: 50px;
+    background-color: #cccccc;
+    margin-bottom: 2px;
+    border-radius: 3px;
+}
+.backToTop a:hover{
+    background-color: #999999;
+}
+.backToTop a:nth-child(1)>span{
+    font-size: 35px;
+    line-height: 1.4em;
+    padding-left: 6px;
+    color:#666;
+}
+.backToTop a:nth-child(2)>span{
+    font-size: 30px;
+    line-height: 1.6em;
+    padding-left: 10px;
+    color:#666;
+}
+
