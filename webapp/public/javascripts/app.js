@@ -5,9 +5,11 @@
 'use strict';
 angular.module('ngMyApp',[
     'myApp.router',
+    'Url',
     'baseController',
     'templateController',
     'publishController',
+    'registerController',
     'baseFilter',
     'baseDirective'
 ])

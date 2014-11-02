@@ -21,4 +21,8 @@ angular.module('myApp.router',[
             templateUrl:'views/publish.html',
             controller:'publishCtrl'
         })
+        .when('/register',{
+            templateUrl:'views/register.html',
+            controller:'registerCtrl'
+        })
 }])
