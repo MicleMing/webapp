@@ -1,0 +1,31 @@
+.header{
+    height: 51px;
+}
+
+footer{
+    width:100%;
+    position: fixed;
+    bottom:0;
+}
+
+footer ul{
+    width:25%;
+    height: 0.5em;
+    margin:0 auto;
+}
+footer ul>li{
+    width: 25%;
+    float:left;
+    list-style-type: none;
+}
+footer p{
+    text-align: center;
+}
+form textarea .ng-dirty.ng-invalid,
+form select .ng-dirty.ng-invalid,
+form input.ng-dirty.ng-invalid {
+    border-color: #e9322d;
+    -webkit-box-shadow: 0 0 6px #f8b9b7;
+    -moz-box-shadow: 0 0 6px #f8b9b7;
+    box-shadow: 0 0 6px #f8b9b7;
+}
