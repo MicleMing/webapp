@@ -5,6 +5,7 @@
 'use strict';
 angular.module('ngMyApp',[
     'myApp.router',
+    'service',
     'Url',
     'baseController',
     'templateController',

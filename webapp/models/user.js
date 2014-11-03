@@ -21,10 +21,12 @@ User.prototype.save = function(callback){
     }
 
     //打开数据库
+    debugger;
     mongodb.open(function(err,db){
         if(err){
             return callback(err);
         }
+        debugger;
         //将数据插入集合
         db.collection('users',function(err,collection){
             if(err){

@@ -3,6 +3,24 @@
  */
 "use strict"
 angular.module("service",["ngResource","Url"])
-    .factory("rest",["$resource",function($resource){
-        return $resource(baseUrl.base,{})
+    .service("user",["$location","$resource","$http","baseUrl",function($location,$resource,$http,baseUrl){
+        var UsersResource = $resource(baseUrl.base+'/:id',
+            {
+                id:'@id'
+            },//第三个参数，自定义$resource方法
+            {
+                update:{
+                    method:'PUT'
+                }
+            }
+        )
+
+        var service={};
+
+        //注册
+        service.register= function(user){
+            return UsersResource.save(user,{id:"users"});
+        }
+
+        return service;
     }])
