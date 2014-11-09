@@ -15,7 +15,6 @@ module.exports = function(app){
       password:req.param("password"),
       email:req.param("email")
     });
-
     newUser.save(function(err,user){
       req.session.user=user;
     })

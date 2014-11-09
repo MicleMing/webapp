@@ -27,6 +27,7 @@
             <input type="password" class="form-control" ng-model="vm.user.psdcheck" required=""  ng-minlength="3" ng-maxlength="5" id="inputPsdCheck" placeholder="repeat password">
         </div>
     </div>
+    <p class="text-danger" ng-if="vm.flag">您两次输入的密码不一致，请重新输入！</p>
 
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
