@@ -11,9 +11,9 @@ module.exports = function(app){
     //生成密码的md5值
     var md5 = crypto.createHash('md5');
     var newUser = new User({
-      name:req.param("username"),
-      password:req.param("password"),
-      email:req.param("email")
+      name:req.body("username"),
+      password:req.body("password"),
+      email:req.body("email")
     });
     newUser.save(function(err,user){
       req.session.user=user;

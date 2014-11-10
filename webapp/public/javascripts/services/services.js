@@ -19,13 +19,9 @@ angular.module("service",["ngResource","Url"])
 
         //注册
         service.register= function(user){
-            return UsersResource.save(user,{
-                id:"users",
-                username:user.username,
-                email:user.email,
-                password:user.password
-            });
+            return UsersResource.save({
+                id:"users"
+            },user);
         }
-
         return service;
     }])
