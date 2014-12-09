@@ -25,4 +25,7 @@ angular.module('myApp.router',[
             templateUrl:'views/register.html',
             controller:'registerCtrl'
         })
+        .when('/login',{
+            controller:'loginCtrl'
+        })
 }])
