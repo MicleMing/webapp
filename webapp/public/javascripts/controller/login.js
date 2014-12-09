@@ -7,6 +7,6 @@ angular.module('ngMyApp')
 
         }
         vm.login = function(){
-            
+
         }
     })

@@ -24,3 +24,25 @@
         </div>
     </div>
 </form>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<ul id="bp-get-started-initialization"></ul>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                    var options = {
+                        bootstrapMajorVersion:3,
+                        currentPage: 1,
+                        totalPages: 10,
+                        pageUrl: function(type, page, current){
+                            return "http://localhost:3000/page/"+page;
+                        }
+                    }
+                    $('#bp-get-started-initialization').bootstrapPaginator(options);
+            })
+
+        </script>
