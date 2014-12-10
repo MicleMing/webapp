@@ -14,9 +14,9 @@ angular.module("registerController",["Url"])
             }
             var promise = user.register(vm.user).$promise;
             promise.then(function(data){
-                console.log(data);
+                alert("success")
             },function(err){
-                console.log(err);
+                alert("err")
             })
         }
     }])
