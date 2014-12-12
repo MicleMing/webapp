@@ -1,5 +1,6 @@
 
 var crypto = require('crypto'),
+    url = require('url'),
     User = require('../models/user.js');
 module.exports = function(app){
   app.get('/',function(req,res){
@@ -20,17 +21,36 @@ module.exports = function(app){
     });
 
     //检查是否存在相同的用户
-    User.get(newUser.name,function(err,user){
-      if(err){
-        res.status(400).send('Bad Request,an err occurred in dataBase');
-      };
-      if(user){
-        res.status(400).send('Bad Request , this username has been risgered')
-      }
-    })
+    //User.get(newUser.name,function(err,user){
+    //  if(err){
+    //    console.log(err);
+    //    res.status(400).send('Bad Request,an err occurred in dataBase');
+    //  };
+    //  if(user){
+    //    res.status(400).send('Bad Request , this username has been risgered')
+    //  }
+    //})
     newUser.save(function(err,user){
       req.session.user=user;
+      res.status(200).send("ok");
+    })
+  });
+
+  //查询所有用户
+  app.get('/allusers',function(req,res){
+    User.getAll(function(err,users){
+      res.status(200).send(users);
     })
   })
 
+  //删除用户
+  app.delete('/user/delete',function(req,res){
+    var id = req.param('id');
+    User.deleted(id,function(err,users){
+      if(err){
+        res.status(400).send(err);
+      }
+      res.status(200);
+    })
+  })
 }
