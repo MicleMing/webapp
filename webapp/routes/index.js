@@ -19,15 +19,15 @@ module.exports = function(app){
       email:email
     });
 
-    //检查是否存在相同的用户
-    User.get(newUser.name,function(err,user){
-      if(err){
-        res.status(400).send('Bad Request,an err occurred in dataBase');
-      };
-      if(user){
-        res.status(400).send('Bad Request , this username has been risgered')
-      }
-    })
+    ////检查是否存在相同的用户
+    //User.get(newUser.name,function(err,user){
+    //  if(err){
+    //    res.status(400).send('Bad Request,an err occurred in dataBase');
+    //  };
+    //  if(user){
+    //    res.status(400).send('Bad Request , this username has been risgered')
+    //  }
+    //})
     newUser.save(function(err,user){
       req.session.user=user;
     })
