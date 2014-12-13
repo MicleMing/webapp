@@ -11,6 +11,7 @@ angular.module('ngMyApp',[
     'templateController',
     'publishController',
     'registerController',
+    'adminController',
     'baseFilter',
     'baseDirective'
 ])

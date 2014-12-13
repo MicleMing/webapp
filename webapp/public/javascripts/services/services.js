@@ -13,6 +13,12 @@ angular.module("service",["ngResource","Url"])
                     method:'PUT'
                 }
             }
+        );
+
+        var UserOperation = $resource(baseUrl.base+'/user/:opt',
+            {
+                opt:'@opt'
+            }
         )
 
         var service={};
@@ -22,6 +28,20 @@ angular.module("service",["ngResource","Url"])
             return UsersResource.save({
                 id:"users"
             },user);
+        }
+        //查询所有用户
+        service.getAllUsers = function(){
+            return UsersResource.query({
+                id:'allusers'
+            })
+        }
+
+        //删除用户
+        service.deleteUser = function(id){
+            return UserOperation.delete({
+                opt:'delete',
+                id:id
+            });
         }
         return service;
     }])
