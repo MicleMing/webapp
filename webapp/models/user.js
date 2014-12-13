@@ -1,7 +1,8 @@
 /**
  * Created by Administrator on 2014/11/2.
  */
-var mongodb = require("./mongodb");
+var mongodb = require("./db");
+
 
 function User(user){
     this.name = user.name;
@@ -68,39 +69,18 @@ User.get = function(name,callback){
     })
 };
 
-//读取所有用户数据
-User.getAll = function(callback){
+//用户登陆
+User.login = function(user,callback){
     mongodb.open(function(err,db){
         if(err){
-            return callback(err);
+            callback(err);
         }
         db.collection('users',function(err,collection){
             if(err){
                 mongodb.close();
-                return callback(err);
+                callback(err);
             }
-            collection.find().toArray(function(err,docs){
-                callback(null,docs);
-                mongodb.close();
-            });
-        })
-    })
-}
-
-//删除用户
-User.deleted = function(id,callback){
-    mongodb.open(function(err,db){
-        if(err){
-            return callback(err);
-        }
-        db.collection('users',function(err,collection){
-            if(err){
-                mongodb.close();
-                return callback(err);
-            }
-
-            collection.findAndRemove({_id:BSON.ObjectID.createFromHexString(id)},function(err,doc){
-                console.log("obj",id);
+            collection.findOne({name:user.username,password:user.password},function(err,doc){
                 mongodb.close();
                 if(err){
                     callback(err);
@@ -110,3 +90,5 @@ User.deleted = function(id,callback){
         })
     })
 }
+
+

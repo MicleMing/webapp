@@ -1,7 +1,8 @@
 
 var crypto = require('crypto'),
     url = require('url'),
-    User = require('../models/user.js');
+    User = require('../models/user.js'),
+    Admin = require('../models/admin.js');
 module.exports = function(app){
   app.get('/',function(req,res){
     res.redirect("../index.html");
@@ -39,7 +40,7 @@ module.exports = function(app){
 
   //查询所有用户
   app.get('/allusers',function(req,res){
-    User.getAll(function(err,users){
+    Admin.getAll(function(err,users){
       res.status(200).send(users);
     })
   })
@@ -47,11 +48,20 @@ module.exports = function(app){
   //删除用户
   app.delete('/user/delete',function(req,res){
     var id = req.param('id');
-    User.deleted(id,function(err,users){
+    Admin.deleted(id,function(err,users){
       if(err){
         res.status(400).send(err);
       }
-      res.status(200);
+      res.status(200).send(users);
     })
+  });
+  //普通用户登陆
+  app.post('/user/login',function(req,res){
+    var user = {
+      username:req.body.username,
+      passworld:req.body.password
+    }
+    console.log('user:',user);
+    res.status(200).send("ok");
   })
 }

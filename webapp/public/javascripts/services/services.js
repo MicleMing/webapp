@@ -15,8 +15,9 @@ angular.module("service",["ngResource","Url"])
             }
         );
 
-        var UserOperation = $resource(baseUrl.base+'/user/:opt',
+        var UserOperation = $resource(baseUrl.base+'/:role/:opt',
             {
+                role:'@role',
                 opt:'@opt'
             }
         )
@@ -39,9 +40,25 @@ angular.module("service",["ngResource","Url"])
         //删除用户
         service.deleteUser = function(id){
             return UserOperation.delete({
+                role:'user',
                 opt:'delete',
                 id:id
             });
         }
+        //用户登陆
+        service.userLogin = function(user){
+            return UserOperation.save({
+                role:'user',
+                opt:'login'
+            },user);
+        }
+        //管理员登陆
+        service.adminLogin = function(user){
+            return UserOperation.save({
+                role:'admin',
+                opt:'login'
+            },user);
+        }
+
         return service;
     }])
