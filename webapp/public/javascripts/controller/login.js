@@ -4,9 +4,12 @@
 
 var LoginController = angular.module('LoginController',[]);
 
-LoginController.controller('loginCtrl',function($scope,$modalInstance,user){
+LoginController.controller('loginCtrl',function($rootScope,$scope,$modalInstance,user){
         var vm = $scope.vm = {
-            user:{}
+            user:{
+                role:'user'
+            },
+            isNotExit:false
         }
     /**
      * 关闭模态框
@@ -21,9 +24,11 @@ LoginController.controller('loginCtrl',function($scope,$modalInstance,user){
             if(vm.user.role =='user'){
                 var promise = user.userLogin(vm.user).$promise;
                 promise.then(function(data){
-                    console.log('login:',data);
+                    vm.isNotExit = false;
+                    $rootScope.isLogin = true;
+                    $modalInstance.close();
                 },function(err){
-                    console.log(err);
+                    vm.isNotExit = true;
                 })
             }else if(vm.user.role == 'admin'){
                 var promise = user.adminLogin(vm.user).$promise;

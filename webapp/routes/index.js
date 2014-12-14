@@ -57,11 +57,22 @@ module.exports = function(app){
   });
   //普通用户登陆
   app.post('/user/login',function(req,res){
+    var md5 = crypto.createHash('md5'),
+        password =  md5.update(req.body.password).digest('hex');
     var user = {
       username:req.body.username,
-      passworld:req.body.password
+      password:password
     }
-    console.log('user:',user);
-    res.status(200).send("ok");
+    User.login(user,function(err,user){
+      if(err){
+        res.status(400).send('an error in database');
+      }
+      if(user !=null){
+        req.session.user = user;
+        res.status(200).send('login success');
+      }else{
+        res.status(404).send('no user');
+      }
+    })
   })
 }
