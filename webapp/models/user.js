@@ -85,6 +85,7 @@ User.login = function(user,callback){
                 if(err){
                     callback(err);
                 }
+                console.log('login:',doc);
                 callback(null,doc);
             })
         })

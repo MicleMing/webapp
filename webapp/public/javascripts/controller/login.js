@@ -3,7 +3,6 @@
  */
 
 var LoginController = angular.module('LoginController',[]);
-
 LoginController.controller('loginCtrl',function($scope,$modalInstance,user,AuthService){
         var vm = $scope.vm = {
             user:{
