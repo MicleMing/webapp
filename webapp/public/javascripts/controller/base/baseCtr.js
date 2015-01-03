@@ -4,7 +4,7 @@
  */
 var baseController = angular.module('baseController',[]);
 
-baseController.controller('baseCtrl',function($scope,$modal){
+baseController.controller('baseCtrl',function($scope,$modal,AuthService){
     var vm = $scope.vm = {
 
     };
@@ -16,5 +16,12 @@ baseController.controller('baseCtrl',function($scope,$modal){
             templateUrl:'views/directiveTemplate/login.html',
             controller:'loginCtrl'
         })
+    };
+
+    /**
+     * 退出登录
+     */
+    vm.signOut = function(){
+        AuthService.signOut();
     }
 })

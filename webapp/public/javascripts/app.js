@@ -15,5 +15,9 @@ angular.module('ngMyApp',[
     'adminController',
     'LoginController',
     'baseFilter',
-    'baseDirective'
-])
+    'baseDirective',
+    'ipCookie',
+    'alert'
+]).run(function($rootScope,ipCookie){
+    $rootScope.token = ipCookie('token');
+})

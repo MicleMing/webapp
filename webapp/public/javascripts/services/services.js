@@ -62,3 +62,46 @@ angular.module("service",["ngResource","Url"])
 
         return service;
     }])
+    .service('AuthService',function AuthService($rootScope,$http,ipCookie,baseUrl){
+
+        var authService = {};
+
+        authService.user = {};
+        authService.inited = false;
+
+        //登陆
+        authService.signIn = function(credentials){
+            credentials.grant_type = 'password';
+            var authorization  = 'Basic MzUzYjMwMmM0NDU3NGY1NjUwNDU2ODdlNTM0Z';
+
+            $http.defaults.headers.common.AutoAuthorize = authorization;
+            $http.post(baseUrl.base+'/users/login',credentials
+            ).success(function(data){
+                if(data.token_type && data.access_token){
+                    authService.setToken(data.token_type,data.access_token);
+                    $rootScope.$broadcast('user.update');
+                }
+            }).error(function(err){
+                $rootScope.$broadcast('user.error');
+            })
+        };
+
+        //退出登录
+        authService.signOut = function(){
+            ipCookie.remove('token')
+            ipCookie.remove('access_token');
+            $rootScope.token = null;
+            $rootScope.access_token = null;
+        };
+        //设置token
+        authService.setToken = function(token,access_token){
+            $rootScope.token = token;
+            $rootScope.access_token = access_token;
+            ipCookie('token',token);
+            ipCookie('access_token',access_token);
+            //var a = ipCookie('token'),
+            //    b = ipCookie('access_token');
+        };
+
+        return authService;
+    })

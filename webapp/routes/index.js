@@ -34,7 +34,10 @@ module.exports = function(app){
     //})
     newUser.save(function(err,user){
       req.session.user=user;
-      res.status(200).send("ok");
+      res.status(200).send({
+        token_type:'user',
+        access_token:user[0].name
+      });
     })
   });
 
@@ -56,12 +59,38 @@ module.exports = function(app){
     })
   });
   //普通用户登陆
-  app.post('/user/login',function(req,res){
+  app.post('/users/login',function(req,res){
+    var md5 = crypto.createHash('md5');
     var user = {
       username:req.body.username,
-      passworld:req.body.password
+      password:md5.update(req.body.password).digest('hex'),
+      grant_type:req.body.grant_type
+    };
+    var AutoAuthorize = req.get('AutoAuthorize');
+    //进行身份验证
+    var serviceAutorize = 'Basic MzUzYjMwMmM0NDU3NGY1NjUwNDU2ODdlNTM0Z';
+
+    if(AutoAuthorize === serviceAutorize && user.grant_type === 'password' ){
+      User.login(user,function(err,user){
+        console.log(user);
+        if(err){
+          res.status(400).send({
+            error:'bad request'
+          })
+        }else{
+          if(user === null){
+            res.status(404).send({
+              error:'not found'
+            });
+          }else{
+              var data = {
+                token_type:'user',
+                access_token:user.name
+              };
+              res.status(200).send(data);
+            }
+          }
+      })
     }
-    console.log('user:',user);
-    res.status(200).send("ok");
   })
 }

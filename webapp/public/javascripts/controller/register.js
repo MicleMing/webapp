@@ -2,7 +2,7 @@
  * Created by Administrator on 2014/11/2.
  */
 angular.module("registerController",["Url"])
-    .controller("registerCtrl",['$scope','$http','baseUrl','user',function($scope,$http,baseUrl,user){
+    .controller("registerCtrl",function($scope,$http,$location,baseUrl,user,AuthService){
         var vm = $scope.vm ={
             user:{},
             flag:false
@@ -14,9 +14,18 @@ angular.module("registerController",["Url"])
             }
             var promise = user.register(vm.user).$promise;
             promise.then(function(data){
-                alert("success")
+                AuthService.setToken(data.token_type,data.access_token);
+                $scope.$emit('success',{
+                    title:'成功',
+                    message:'注册成功'
+                })
+                $location.path('/');
             },function(err){
-                alert("err")
+                $scope.$emit('error',{
+                    tilte:'失败',
+                    message:'注册失败'
+                })
             })
         }
-    }])
+
+    })
