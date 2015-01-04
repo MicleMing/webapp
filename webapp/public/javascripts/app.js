@@ -14,6 +14,7 @@ angular.module('ngMyApp',[
     'registerController',
     'adminController',
     'LoginController',
+    'articleController',
     'baseFilter',
     'baseDirective',
     'ipCookie',

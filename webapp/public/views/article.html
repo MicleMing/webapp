@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <p ng-click="vm.publish()">发表文章</p>
+        <p ng-click="vm.getAticlesList()">getlist</p>
+    </div>
+    <div class="col-md-4 col-md-offset-1">
+        <ul>
+            <li ng-repeat="item in vm.items" ng-click="vm.getDetail(item)">{{item.title}}</li>
+        </ul>
+    </div>
+    <div class="col-md-6">
+        <h3 class="text-muted">{{vm.article.title}}</h3>
+        <h5>{{vm.article.author}}</h5>
+        <article class="text-muted">{{vm.article.post}}</article>
+    </div>
+
+
+</div>
+<ul id="bp-get-started-initialization"></ul>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var options = {
+            bootstrapMajorVersion:3,
+            currentPage: 1,
+            totalPages: 10,
+            pageUrl: function(type, page, current){
+                return "http://localhost:3000/page/"+page;
+            }
+        }
+        $('#bp-get-started-initialization').bootstrapPaginator(options);
+    })
+
+</script>

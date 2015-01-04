@@ -29,4 +29,8 @@ angular.module('myApp.router',[
             templateUrl:'views/admin.html',
             controller:'adminCtrl'
         })
+        .when('/article',{
+            templateUrl:'views/article.html',
+            controller:'articleCtrl'
+        })
 }])

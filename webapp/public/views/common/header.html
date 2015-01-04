@@ -16,7 +16,7 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#/home">主页</a></li>
                     <li><a href="#/template">模板</a></li>
-                    <li><a href="#/publish">发布</a></li>
+                    <li><a href="#/article">文章</a></li>
                     <li ng-if="token==null"><a href="#/register">注册</a></li>
                     <li ng-if="token==null" ng-controller="baseCtrl"><a ng-click="vm.gotoLogin()">登陆</a></li>
                     <li ng-if="token!=null" ng-controller="baseCtrl" ><a ng-click="vm.signOut()">退出</a></li>

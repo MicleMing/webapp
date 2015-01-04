@@ -1,48 +1,15 @@
-<form class="form-horizontal" role="form" novalidate=""  name="base_form">
-    <div class="form-group">
-        <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-        <div class="col-sm-10">
-            <input type="email" class="form-control" ng-model="user.email" required=""  id="inputEmail" placeholder="email">
-        </div>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <form role="form">
+            <div class="form-group">
+                <label for="title">标题</label>
+                <input type="text" class="form-control" id="title" ng-model="vm.article.title"  placeholder="请输入标题">
+            </div>
+            <div class="form-group">
+                <label for="article"></label>
+                <textarea  rows="15" type="text" class="form-control" id="article" ng-model="vm.article.post" placeholder="请输入正文..."></textarea>
+            </div>
+            <button class="btn btn-default" style="float: right" ng-click="vm.publish()">发布</button>
+        </form>
     </div>
-
-    <div class="form-group">
-        <label for="inputPassword" class="col-sm-2 control-label">Password</label>
-        <div class="col-sm-10">
-            <input type="password" class="form-control" ng-model="user.password" required=""  ng-minlength="3" ng-maxlength="5" id="inputPassword" placeholder="password">
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="inputUsername" class="col-sm-2 control-label">UserName</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" ng-model="user.username" required="" ng-pattern="/^[A-Za-z]{1}[0-9A-Za-z]{2,29}$/" id="inputUsername" placeholder="由字母、数字、下划线组成，以字母开头，3-30个字符">
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-success" ng-click="submitMsg(base_form)" ng-disabled="base_form.$invalid ">登陆</button>
-        </div>
-    </div>
-</form>
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<ul id="bp-get-started-initialization"></ul>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                    var options = {
-                        bootstrapMajorVersion:3,
-                        currentPage: 1,
-                        totalPages: 10,
-                        pageUrl: function(type, page, current){
-                            return "http://localhost:3000/page/"+page;
-                        }
-                    }
-                    $('#bp-get-started-initialization').bootstrapPaginator(options);
-            })
-
-        </script>
+</div>

@@ -20,8 +20,14 @@ angular.module("service",["ngResource","Url"])
                 role:'@role',
                 opt:'@opt'
             }
-        )
+        );
 
+        var ArticleOperation = $resource(baseUrl.base+'/article/:role/:opt',
+            {
+                role:'@role',
+                opt:'@opt'
+            }
+        );
         var service={};
 
         //注册
@@ -58,6 +64,28 @@ angular.module("service",["ngResource","Url"])
                 role:'admin',
                 opt:'login'
             },user);
+        };
+
+        //发布文章
+        service.publishArticle =function(article){
+            return ArticleOperation.save({
+                opt:'post'
+            },article);
+        };
+
+        //获取文章列表
+        service.getArticleList = function(){
+            return ArticleOperation.query({
+                opt:'list'
+            })
+        };
+
+        //根据id获取文章内容
+        service.getDetail = function(id){
+            return ArticleOperation.get({
+                opt:'detail',
+                id:id
+            })
         }
 
         return service;
@@ -75,7 +103,7 @@ angular.module("service",["ngResource","Url"])
             var authorization  = 'Basic MzUzYjMwMmM0NDU3NGY1NjUwNDU2ODdlNTM0Z';
 
             $http.defaults.headers.common.AutoAuthorize = authorization;
-            $http.post(baseUrl.base+'/users/login',credentials
+            $http.post(baseUrl.base+'/user/login',credentials
             ).success(function(data){
                 if(data.token_type && data.access_token){
                     authService.setToken(data.token_type,data.access_token);
