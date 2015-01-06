@@ -27,12 +27,8 @@ LoginController.controller('loginCtrl',function($scope,$modalInstance,user,AuthS
                     message:'登录成功'
                 })
             }else if(vm.user.role == 'admin'){
-                var promise = user.adminLogin(vm.user).$promise;
-                promise.then(function(data){
-                    console.log(data);
-                },function(err){
-                    console.log(err);
-                })
+                AuthService.signIn(vm.user);
+                $modalInstance.close();
             }
         }
     })

@@ -74,9 +74,10 @@ angular.module("service",["ngResource","Url"])
         };
 
         //获取文章列表
-        service.getArticleList = function(){
+        service.getArticleList = function(query){
             return ArticleOperation.query({
-                opt:'list'
+                opt:'list',
+                query:query
             })
         };
 
@@ -84,6 +85,15 @@ angular.module("service",["ngResource","Url"])
         service.getDetail = function(id){
             return ArticleOperation.get({
                 opt:'detail',
+                id:id
+            })
+        };
+
+        //根据id 删除文章
+        service.deleteArticle = function(id){
+            return ArticleOperation.delete({
+                role:'admin',
+                opt:'delete',
                 id:id
             })
         }
@@ -103,14 +113,20 @@ angular.module("service",["ngResource","Url"])
             var authorization  = 'Basic MzUzYjMwMmM0NDU3NGY1NjUwNDU2ODdlNTM0Z';
 
             $http.defaults.headers.common.AutoAuthorize = authorization;
-            $http.post(baseUrl.base+'/user/login',credentials
+            $http.post(baseUrl.base+'/'+credentials.role+'/login',credentials
             ).success(function(data){
                 if(data.token_type && data.access_token){
                     authService.setToken(data.token_type,data.access_token);
-                    $rootScope.$broadcast('user.update');
-                }
+                };
+                    $rootScope.$emit('success',{
+                        title:'成功',
+                        message:'登录成功'
+                    })
             }).error(function(err){
-                $rootScope.$broadcast('user.error');
+                    $rootScope.$emit('error',{
+                        title:'失败',
+                        message:'登录失败'
+                    })
             })
         };
 

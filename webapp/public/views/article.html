@@ -1,22 +1,44 @@
+<br/><br/>
 <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-        <p ng-click="vm.publish()">发表文章</p>
-        <p ng-click="vm.getAticlesList()">getlist</p>
-    </div>
-    <div class="col-md-4 col-md-offset-1">
-        <ul>
-            <li ng-repeat="item in vm.items" ng-click="vm.getDetail(item)">{{item.title}}</li>
-        </ul>
-    </div>
-    <div class="col-md-6">
-        <h3 class="text-muted">{{vm.article.title}}</h3>
-        <h5>{{vm.article.author}}</h5>
-        <article class="text-muted">{{vm.article.post}}</article>
-    </div>
+    <div class="col-md-10 col-md-offset-1 panel panel-success">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-4"  ng-if="token">
+                    <p ng-click="vm.publish()">发表文章</p>
+                </div>
+                <div class="col-md-4 input-group" style="float:right">
+                    <input type="text" class="form-control" ng-model="vm.author" placeholder="请输入作者名字...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" ng-click="vm.searchArticles(vm.author)">搜索</button>
+                     </span>
+                </div>
+            </div>
 
+        </div>
+    </div>
+    <div class="col-md-4 col-md-offset-1 panel panel-success">
+        <div class="panel-body">
+            <ul>
+                <li ng-repeat="item in vm.items" ng-click="vm.getDetail(item)">{{item.title}}</li>
+            </ul>
+            <!--<ul id="bp-get-started-initialization"></ul>-->
+        </div>
+    </div>
+    <div class="col-md-6 panel panel-success" style="margin-left:5px;">
+        <div class="panel-body">
+            <h3 class="text-muted">{{vm.article.title}}</h3>
+            <h5>{{vm.article.author}}</h5>
+            <article class="text-muted">{{vm.article.post}}</article>
+            <ul>
+                <li ng-repeat="pic in vm.article.pictures">
+                    <img style="width:100%" ng-src="/images/user/{{pic}}"/>
+                </li>
+            </ul>
 
+        </div>
+    </div>
 </div>
-<ul id="bp-get-started-initialization"></ul>
+
 <script type="text/javascript">
     $(document).ready(function () {
         var options = {

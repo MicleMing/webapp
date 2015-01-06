@@ -1,19 +1,72 @@
-<table class="table">
-    <tr>
-        <td>姓名</td>
-        <td>邮箱</td>
-        <td>操作</td>
-    </tr>
-    <tr ng-repeat="user in vm.users">
-        <td>{{user.name}}</td>
-        <td>{{user.email}}</td>
-        <td><span style="cursor:pointer" class="glyphicon glyphicon-remove" ng-click="vm.removeUser(user)"></span></td>
-    </tr>
-</table>
+<br/><br/>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">用户列表</h3>
+            </div>
+            <div class="panel-body">
+                <br/>
+                <table class="table table-hover">
+                    <tr>
+                        <td>姓名</td>
+                        <td>邮箱</td>
+                        <td>操作</td>
+                    </tr>
+                    <tr ng-repeat="user in vm.users">
+                        <td>{{user.name}}</td>
+                        <td>{{user.email}}</td>
+                        <td><span style="cursor:pointer" class="glyphicon glyphicon-remove" ng-click="vm.removeUser(user)"></span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
 
 
-
-<div>
-    <button class="btn btn-default" ng-click="vm.getAllUsers()">获取所有用户</button>
 </div>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3 class="panel-title">文章操作</h3>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group" style="float:right">
+                            <input type="text" class="form-control" ng-model="vm.author" placeholder="请输入作者名字...">
+                            <span class="input-group-btn">
+                             <button class="btn btn-default" type="button" ng-click="vm.searchArticles(vm.author)">搜索</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="panel-body">
+                <br/>
+                <table class="table table-hover">
+                    <tr>
+                        <td>作者</td>
+                        <td>标题</td>
+                        <td>时间</td>
+                        <td>操作</td>
+                    </tr>
+                    <tr ng-repeat="article in vm.items">
+                        <td>{{article.author}}</td>
+                        <td>{{article.title}}</td>
+                        <td>{{article.time}}</td>
+                        <td><span style="cursor:pointer" class="glyphicon glyphicon-remove" ng-click="vm.deleteArticle(article)"></span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!--    <button class="btn btn-default" ng-click="vm.getAticlesList()">获取所有用户</button>-->
+
 

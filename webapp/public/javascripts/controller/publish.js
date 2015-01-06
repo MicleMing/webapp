@@ -3,13 +3,22 @@
  */
 
 angular.module("publishController",[])
-    .controller("publishCtrl",function($scope,ipCookie,user){
+    .controller("publishCtrl",function($rootScope,$scope,ipCookie,user,FileUploader,baseUrl){
         var author = ipCookie('access_token');
         var vm = $scope.vm = {
             article:{
-                author:author
+                author:author,
+                pictures:[]
             }
         }
+        $scope.uploader = new FileUploader({
+            url:baseUrl.base+'/article/post/picture',
+            onCompleteItem:function(item, response, status, headers){
+                //var pictureId = item._file.lastModified+item._file.name;
+                var pictureId = item._file.name;
+                vm.article.pictures.push(pictureId);
+            }
+        });
         vm.publish = function(){
             var promise = user.publishArticle(vm.article).$promise;
             promise.then(function(data){
@@ -25,5 +34,6 @@ angular.module("publishController",[])
                     message:'文章发布失败'
                 })
             })
-        }
+        };
+
     })

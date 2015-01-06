@@ -73,7 +73,6 @@ module.exports = function(app){
 
     if(AutoAuthorize === serviceAutorize && user.grant_type === 'password' ){
       User.login(user,function(err,user){
-        console.log(user);
         if(err){
           res.status(400).send({
             error:'bad request'
@@ -94,14 +93,52 @@ module.exports = function(app){
       })
     }
   });
+  //管理员登陆
+  app.post('/admin/login',function(req,res){
+    var admin = {
+      username:req.body.username,
+      password:req.body.password,
+      grant_type:req.body.grant_type
+    };
+    var AutoAuthorize = req.get('AutoAuthorize');
+    //进行身份验证
+    var serviceAutorize = 'Basic MzUzYjMwMmM0NDU3NGY1NjUwNDU2ODdlNTM0Z';
 
+    if(AutoAuthorize === serviceAutorize && admin.grant_type === 'password' ){
+      Admin.login(admin,function(err,admin){
+        if(err){
+          res.status(400).send({
+            error:'bad request'
+          })
+        }else{
+          if(admin === null){
+            res.status(404).send({
+              error:'not found'
+            });
+          }else{
+            var data = {
+              token_type:'admin',
+              access_token:admin.name,
+              name:admin.name
+            };
+            res.status(200).send(data);
+          }
+        }
+      })
+    }
+  })
+  //上传图片
+  app.post('/article/post/picture',function(req,res){
+    res.status(200).send('ok');
+  })
   //文章发布
   app.post('/article/post',function(req,res){
     var author = req.body.author,
         title = req.body.title,
-        post = req.body.post;
+        post = req.body.post,
+        pictures = req.body.pictures;
 
-    var newArticle = new Article(author,title,post);
+    var newArticle = new Article(author,title,post,pictures);
 
     newArticle.save(function(err,doc){
       if(err){
@@ -115,7 +152,7 @@ module.exports = function(app){
   //获取文章列表
   app.get('/article/list',function(req,res){
     var query = {},
-        author = req.param('author');
+        author = req.param('query');
     if(author){
       query.author = author;
     }
@@ -138,6 +175,18 @@ module.exports = function(app){
         res.status(400).send('bad request');
       }else{
         res.status(200).send(doc[0]);
+      }
+    })
+  });
+
+  //删除文章
+  app.delete('/article/admin/delete',function(req,res){
+    var id = req.param('id');
+    Admin.deleteArticle(id,function(err,doc){
+      if(err){
+        res.status(400).send('bad request');
+      }else{
+        res.status(200).send('delete success');
       }
     })
   });

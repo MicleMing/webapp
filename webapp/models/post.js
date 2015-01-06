@@ -4,10 +4,11 @@
 var mongodb = require('./db'),
     BSON = require('mongodb').BSONPure;
 
-function Post(author,title,post){
+function Post(author,title,post,pictures){
     this.author = author;
     this.title = title;
     this.post = post;
+    this.pictures = pictures
 }
 
 module.exports = Post;
@@ -27,7 +28,8 @@ Post.prototype.save = function(callback){
         author:this.author,
         time:this.time,
         title:this.title,
-        post:this.post
+        post:this.post,
+        pictures:this.pictures
     };
 
     //open database

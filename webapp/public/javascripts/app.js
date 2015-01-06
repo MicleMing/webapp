@@ -18,6 +18,7 @@ angular.module('ngMyApp',[
     'baseFilter',
     'baseDirective',
     'ipCookie',
+    'angularFileUpload',
     'alert'
 ]).run(function($rootScope,ipCookie){
     $rootScope.token = ipCookie('token');

@@ -9,7 +9,36 @@
                 <label for="article"></label>
                 <textarea  rows="15" type="text" class="form-control" id="article" ng-model="vm.article.post" placeholder="请输入正文..."></textarea>
             </div>
-            <button class="btn btn-default" style="float: right" ng-click="vm.publish()">发布</button>
+
+            <table class="table">
+                <tbody>
+                <tr ng-repeat="item in uploader.queue">
+                    <td>
+                        <strong>{{ item.file.name }}</strong>
+                        <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+                    </td>
+                    <td ng-show="uploader.isHTML5">
+                        <div class="progress" style="margin-bottom: 0; width: 100px;margin-right: -50px;">
+                            <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                        </div>
+                    </td>
+                    <td nowrap>
+                        <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                            <span class="glyphicon glyphicon-upload"></span> 上传
+                        </button>
+                        <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                            <span class="glyphicon glyphicon-trash"></span> 删除
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <input type="file" nv-file-select="" uploader="uploader" multiple  /><br/>
+            <button class="btn btn-success" style="float: right" ng-click="vm.publish()">发布</button>
+            <button class="btn btn-default" style="float:right;margin-right: 20px;">保存为草稿</button>
+
         </form>
     </div>
 </div>
+
+

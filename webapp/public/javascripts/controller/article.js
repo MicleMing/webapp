@@ -15,10 +15,15 @@ angular.module('articleController',[])
         }
 
         //获取文章列表
+        vm.isFirst = true;
         vm.getAticlesList = function(){
             var promise = user.getArticleList().$promise;
             promise.then(function(data){
                 vm.items = data;
+                if(vm.isFirst){
+                    vm.getDetail(vm.items[0]);
+                    vm.isFirst = false;
+                }
             },function(err){
                 console.log(err);
             })
@@ -35,6 +40,16 @@ angular.module('articleController',[])
                     message:'该文章不存在'
                 })
             })
-        }
+        };
+        vm.getAticlesList();
 
+        //根据作者搜索文章
+        vm.searchArticles = function(query){
+            var promise = user.getArticleList(query).$promise;
+            promise.then(function(data){
+                vm.items = data;
+            },function(err){
+                console.log(err);
+            })
+        }
     })
