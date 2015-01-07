@@ -33,4 +33,8 @@ angular.module('myApp.router',[
             templateUrl:'views/article.html',
             controller:'articleCtrl'
         })
+        .when('/chat',{
+            templateUrl:'views/chat.html',
+            controller:'chatCtrl'
+        })
 }])

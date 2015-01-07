@@ -1,0 +1,38 @@
+<script src="/socket.io/socket.io.js"></script>
+ <br/><br/>
+ <div class="row">
+     <div class="col-md-8 col-md-offset-2">
+         <div class="panel panel-default">
+             <div class="panel-heading">
+                 <h3 class="panel-title">讨论区</h3>
+             </div>
+             <div class="panel-body">
+                 <div class="row">
+                     <div class="col-md-7">
+                         <div id = 'output'>
+
+                         </div>
+                     </div>
+                     <div class="col-md-3">
+                         <ul></ul>
+                     </div>
+                 </div>
+
+             </div>
+             <div class='row' id="send">
+                 <div class="col-md-6 col-md-offset-1">
+                     <input class="form-control" type="text" id = 'data' ng-model="vm.message" >
+                 </div>
+                 <div class="col-md-2">
+                     <button class="btn btn-default" id = 'sendtext' ng-click="vm.sendMessage()">发送</button>
+                 </div>
+             </div>
+             <br/>
+         </div>
+     </div>
+     <br/>
+ </div>
+
+
+
+

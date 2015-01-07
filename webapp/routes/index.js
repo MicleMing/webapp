@@ -5,6 +5,8 @@ var crypto = require('crypto'),
     Admin = require('../models/admin.js'),
     Article = require('../models/post.js');
 module.exports = function(app){
+
+  //重定向
   app.get('/',function(req,res){
     res.redirect("../index.html");
   });

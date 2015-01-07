@@ -15,6 +15,7 @@ angular.module('ngMyApp',[
     'adminController',
     'LoginController',
     'articleController',
+    'chatController',
     'baseFilter',
     'baseDirective',
     'ipCookie',
@@ -22,4 +23,5 @@ angular.module('ngMyApp',[
     'alert'
 ]).run(function($rootScope,ipCookie){
     $rootScope.token = ipCookie('token');
+    $rootScope.access_token = ipCookie('access_token');
 })
