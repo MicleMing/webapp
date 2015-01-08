@@ -12,29 +12,50 @@ module.exports = function(app,server){
     });
 
     var io = sio.listen(server);
+    var userCount = 0,
+        onlineUsers = {};
     io.sockets.on('connection',function(socket){
-        socket.on('addme',function(username){
-            socket.username = username;
+        socket.on('addme',function(user){
+            socket.username = user.username;
+            socket.userId = user.userId;
+            if(!onlineUsers.hasOwnProperty(user.userId)){
+                userCount++;
+                onlineUsers[user.userId] = user.username
+            }
             socket.emit('chat',{
-                username:username,
-                message:'连接成功'
+                username:user.username,
+                message:'连接成功',
+                userCount:userCount,
+                onlineUsers:onlineUsers
             });
             socket.broadcast.emit('chat',{
                 username:'SERVER',
-                message:username+'上线啦'
+                message:user.username+'上线啦',
+                userCount:userCount,
+                onlineUsers:onlineUsers,
+                connect:true
             });
+
         });
         socket.on('sendchat',function(data){
             console.log('sendchat');
             io.sockets.emit('chat',{
                 username:socket.username,
-                message:data
+                message:data,
+                userCount:userCount,
+                onlineUsers:onlineUsers
             });
         });
         socket.on('disconnect',function(){
-            io.sockets.emit('chat',{
+            if(onlineUsers.hasOwnProperty(socket.userId)){
+                userCount--;
+                delete onlineUsers[socket.userId];
+            }
+            io.sockets.emit('leave',{
                 username:'SERVER',
-                message:socket.username+'下线了.'
+                message:socket.username+'下线了.',
+                userCount:userCount,
+                onlineUsers:onlineUsers
             });
         })
     });

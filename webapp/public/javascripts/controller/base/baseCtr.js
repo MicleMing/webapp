@@ -4,9 +4,9 @@
  */
 var baseController = angular.module('baseController',[]);
 
-baseController.controller('baseCtrl',function($scope,$modal,AuthService){
+baseController.controller('baseCtrl',function($scope,$modal,$location,AuthService,ipCookie){
     var vm = $scope.vm = {
-
+        keyword:''
     };
     /**
      * 登陆模态框
@@ -19,9 +19,16 @@ baseController.controller('baseCtrl',function($scope,$modal,AuthService){
     };
 
     /**
-     * 退出登录
+     * @description 退出登录
      */
     vm.signOut = function(){
         AuthService.signOut();
+    };
+    /**
+     * @description 转跳到搜索页面
+     */
+    vm.gotoSearch = function(keyword){
+        ipCookie('keyword',keyword)
+        $location.path('/search');
     }
 })

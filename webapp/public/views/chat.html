@@ -9,12 +9,15 @@
              <div class="panel-body">
                  <div class="row">
                      <div class="col-md-7">
-                         <div id = 'output'>
-
-                         </div>
+                         <ul id = 'output' ng-repeat="chat in vm.chatList">
+                             <li >{{chat.username}}:{{chat.message}}</li>
+                         </ul>
                      </div>
                      <div class="col-md-3">
-                         <ul></ul>
+                         <h3>在线人数：{{vm.userCount}}</h3>
+                         <ul>
+                             <li  ng-repeat="user in vm.onlineUsers">{{user}}</li>
+                         </ul>
                      </div>
                  </div>
 

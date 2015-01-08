@@ -22,18 +22,18 @@
 
                     <li  ng-if="token == 'admin'"><a href="#/admin">管理员</a></li>
                 </ul>
-                <form class="navbar-form navbar-left" role="search">
+                <form class="navbar-form navbar-left" role="search" ng-controller="baseCtrl">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="search">
+                        <input type="text" ng-model="vm.keyword" class="form-control" placeholder="search">
                     </div>
-                    <button type="submit" class="btn btn-default">submit</button>
+                    <button class="btn btn-default" ng-click="vm.gotoSearch(vm.keyword)">搜索</button>
                 </form>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#/chat"><span class="glyphicon glyphicon-comment">&nbsp;在线聊天</span> </a></li>
                     <li class="dropdown">
                         <a href="javascript:0;" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">个人中心</a></li>
+                            <li><a href="#/userCenter">个人中心</a></li>
                             <li ng-if="token!=null" ng-controller="baseCtrl" ><a ng-click="vm.signOut()">退出</a></li>
                             <li><a href="#">Another action</a></li>
                             <li><a href="#">Something else here</a></li>

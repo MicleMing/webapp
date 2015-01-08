@@ -116,7 +116,7 @@ angular.module("service",["ngResource","Url"])
             $http.post(baseUrl.base+'/'+credentials.role+'/login',credentials
             ).success(function(data){
                 if(data.token_type && data.access_token){
-                    authService.setToken(data.token_type,data.access_token);
+                    authService.setToken(data.token_type,data.access_token,data.userId,data.email);
                 };
                     $rootScope.$emit('success',{
                         title:'成功',
@@ -138,11 +138,15 @@ angular.module("service",["ngResource","Url"])
             $rootScope.access_token = null;
         };
         //设置token
-        authService.setToken = function(token,access_token){
+        authService.setToken = function(token,access_token,userId,email){
             $rootScope.token = token;
             $rootScope.access_token = access_token;
+            $rootScope.userId = userId;
+            $rootScope.email = email;
             ipCookie('token',token);
             ipCookie('access_token',access_token);
+            ipCookie('userId',userId);
+            ipCookie('email',email);
             //var a = ipCookie('token'),
             //    b = ipCookie('access_token');
         };

@@ -37,4 +37,12 @@ angular.module('myApp.router',[
             templateUrl:'views/chat.html',
             controller:'chatCtrl'
         })
+        .when('/search',{
+            templateUrl:'views/search.html',
+            controller:'searchCtrl'
+        })
+        .when('/userCenter',{
+            templateUrl:'/views/userCenter.html',
+            controller:'userCenterCtrl'
+        })
 }])

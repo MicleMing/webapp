@@ -87,7 +87,9 @@ module.exports = function(app){
           }else{
               var data = {
                 token_type:'user',
-                access_token:user.name
+                access_token:user.name,
+                userId:user._id,
+                email:user.email
               };
               res.status(200).send(data);
             }
