@@ -2,7 +2,7 @@
  * Created by Administrator on 2015/1/8.
  */
 angular.module('userCenterController',[])
-    .controller('userCenterCtrl',function($scope,$rootScope,$modal,user,ipCookie){
+    .controller('userCenterCtrl',function($scope,$rootScope,$modal,$location,user,ipCookie){
         var vm = $scope.vm = {
             isEdit:false,
             isError:false,
@@ -94,4 +94,14 @@ angular.module('userCenterController',[])
                 }
             })
         };
+
+        //生成pdf
+        vm.pdfKit = function(item){
+            var  promsie = user.pdfKit(item._id).$promise;
+            promsie.then(function(data){
+
+            },function(err){
+                console.log(err);
+            })
+        }
     })

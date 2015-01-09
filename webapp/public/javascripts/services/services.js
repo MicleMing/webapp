@@ -111,6 +111,14 @@ angular.module("service",["ngResource","Url"])
             return ArticleOperation.save({
                 opt:'modify'
             },modify)
+        };
+
+        //生成pdf
+        service.pdfKit = function(id){
+            return ArticleOperation.get({
+                opt:'pdf',
+                _id:id
+            })
         }
 
         return service;
