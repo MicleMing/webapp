@@ -25,7 +25,16 @@ angular.module("adminController",["Url"])
         vm.removeUser = function(userObj){
             var promise = user.deleteUser(userObj._id).$promise;
             promise.then(function(data){
-                console.log(data);
+                vm.users.forEach(function(item,index,array){
+                    if(item._id == data._id ){
+                        vm.users.splice(index,1);
+                        return;
+                    }
+                })
+                $scope.$emit('success',{
+                    title:'success',
+                    message:'删除成功'
+                })
             },function(err){
                 console.log(err);
             })
@@ -38,6 +47,7 @@ angular.module("adminController",["Url"])
             var promise = user.getArticleList().$promise;
             promise.then(function(data){
                 vm.items = data;
+                vm.items.title = vm.items.title.replace(/" "/g,"")
             },function(err){
                 console.log(err);
             })

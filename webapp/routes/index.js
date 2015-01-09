@@ -39,7 +39,9 @@ module.exports = function(app){
       req.session.user=user;
       res.status(200).send({
         token_type:'user',
-        access_token:user[0].name
+        access_token:user[0].name,
+        userId:user[0]._id,
+        email:user[0].email
       });
     })
   });
@@ -195,6 +197,40 @@ module.exports = function(app){
     })
   });
 
+  //修改个人信息
+  app.post('/user/modify',function(req,res){
+    var modify = {
+      username:req.body.username,
+      email:req.body.email,
+      _id:req.body.id
+    }
+    if(req.body.password){
+      var md5 = crypto.createHash('md5');
+      modify.password = md5.update(req.body.password).digest('hex')
+    };
+    User.modify(modify,function(err,doc){
+      if(err){
+        res.status(400).send('error on server');
+      }else{
+        res.status(200).send(doc);
+      }
+    })
+  });
 
+  //修改文章
+  app.post('/article/modify',function(req,res){
+    var modify = {
+      _id:req.body._id,
+      title:req.body.title,
+      post:req.body.post
+    };
+    Article.modify(modify,function(err,doc){
+      if(err){
+        res.status(400).send('bad request');
+      }else{
+        res.status(200).send(doc[0]);
+      }
+    })
+  })
 
 }

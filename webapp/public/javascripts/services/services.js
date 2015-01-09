@@ -96,6 +96,21 @@ angular.module("service",["ngResource","Url"])
                 opt:'delete',
                 id:id
             })
+        };
+
+        //修改个人信息
+        service.modify = function(modify){
+            return UserOperation.save({
+                role:'user',
+                opt:'modify'
+            },modify)
+        };
+
+        //修改文章信息
+        service.modifyArticle = function(modify){
+            return ArticleOperation.save({
+                opt:'modify'
+            },modify)
         }
 
         return service;

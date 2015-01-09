@@ -38,10 +38,47 @@
                     <div class="form-group">
                         <div class="col-sm-offset-4 col-sm-10">
                             <button ng-if="!vm.isEdit" type="submit" class="btn btn-default" ng-click="vm.edit()">修改</button>
-                            <button ng-if="vm.isEdit" type="submit" class="btn btn-default" ng-click="vm.change()">确定</button>
+                            <button ng-if="vm.isEdit" type="submit" class="btn btn-default" ng-click="vm.modify()">确定</button>
                         </div>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3 class="panel-title">已发表文章</h3>
+                    </div>
+                    <div class="col-md-2 col-md-offset-4">
+                        <button class="btn btn-default" ng-click="vm.searchArticles()">刷新</button>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <br/>
+                <table class="table table-hover">
+                    <tr>
+                        <td>标题</td>
+                        <td>发表时间</td>
+                        <td>删除</td>
+                        <td>修改</td>
+                        <td>导出</td>
+                    </tr>
+                    <tr ng-repeat="article in vm.items">
+                        <td>{{article.title}}</td>
+                        <td>{{article.time}}</td>
+                        <td><span style="cursor:pointer" class="glyphicon glyphicon-remove" ng-click="vm.deleteArticle(article)"></span></td>
+                        <td><span style="cursor:pointer" class="glyphicon glyphicon-file" ng-click="vm.gotoModify(article)"></span></td>
+                        <td><span style="cursor:pointer" class="glyphicon glyphicon-export" ng-click="vm.removeUser(user)"></span></td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>

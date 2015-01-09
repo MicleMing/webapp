@@ -1,7 +1,8 @@
 /**
  * Created by Administrator on 2014/11/2.
  */
-var mongodb = require("./db");
+var mongodb = require("./db"),
+    BSON = require('mongodb').BSONPure;
 
 
 function User(user){
@@ -88,6 +89,44 @@ User.login = function(user,callback){
                 console.log('login:',doc);
                 callback(null,doc);
             })
+        })
+    })
+};
+
+//修改信息
+User.modify =function(modify,callback){
+    mongodb.open(function(err,db){
+        if(err){
+            mongodb.close()
+            return callback(err);
+        };
+        db.collection('users',function(err,collection){
+            if(err){
+                mongodb.close();
+                return callback(err);
+            };
+            if(modify.password){//包含修改密码
+                collection.findAndModify({_id:BSON.ObjectID.createFromHexString(modify._id)},[['_id',1]],{
+                    $set:{name:modify.username,email:modify.email,password:modify.password}
+                },{new:true},function(err,doc){
+                    mongodb.close()
+                    if(err){
+                        return callback(err);
+                    }
+                    return callback(null,doc);
+                })
+            }else{//不修改密码
+                collection.findAndModify({_id:BSON.ObjectID.createFromHexString(modify._id)},[['_id',1]],{
+                    $set:{name:modify.username,email:modify.email}
+                },function(err,doc){
+                    mongodb.close();
+                    if(err){
+                        return callback(err);
+                    }
+                    return callback(null,doc);
+                })
+            }
+
         })
     })
 }

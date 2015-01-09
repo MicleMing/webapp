@@ -20,6 +20,7 @@ angular.module("publishController",[])
             }
         });
         vm.publish = function(){
+            vm.article.title = vm.article.title.replace(/" "/g,"")
             var promise = user.publishArticle(vm.article).$promise;
             promise.then(function(data){
                 console.log(data);

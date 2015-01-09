@@ -18,6 +18,7 @@ angular.module('ngMyApp',[
     'chatController',
     'searchController',
     'userCenterController',
+    'modifyController',
     'baseFilter',
     'baseDirective',
     'ipCookie',

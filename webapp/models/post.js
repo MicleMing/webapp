@@ -26,7 +26,7 @@ Post.prototype.save = function(callback){
 
     var post = {
         author:this.author,
-        time:this.time,
+        time:time.minute,
         title:this.title,
         post:this.post,
         pictures:this.pictures
@@ -90,3 +90,36 @@ Post.get = function(query,callback){
         })
     })
 };
+
+//修改文章信息
+Post.modify = function(modify,callback){
+    var date = new Date();
+    var time = {
+        date:date,
+        year:date.getFullYear(),
+        month:date.getFullYear()+'-'+(date.getMonth()+1),
+        day:date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDay()),
+        minute: date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
+    };
+    mongodb.open(function(err,db){
+        if(err){
+             mongodb.close();
+             return callback(err);
+        };
+        db.collection('posts',function(err,collection){
+            if(err){
+                mongodb.close();
+                return callback(err);
+            }
+            collection.findAndModify({_id:BSON.ObjectID.createFromHexString(modify._id)},[['_id',1]],{
+                $set:{title:modify.title,post:modify.post,time:time.minute}
+            },function(err,doc){
+                mongodb.close();
+                if(err){
+                    return callback(err)
+                };
+                return callback(null,doc);
+            })
+        })
+    })
+}
