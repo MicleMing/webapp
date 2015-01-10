@@ -2,7 +2,7 @@
  * Created by Administrator on 2015/1/8.
  */
 angular.module('userCenterController',[])
-    .controller('userCenterCtrl',function($scope,$rootScope,$modal,$location,user,ipCookie){
+    .controller('userCenterCtrl',function($scope,$rootScope,$modal,$location,$http,$timeout,user,ipCookie){
         var vm = $scope.vm = {
             isEdit:false,
             isError:false,
@@ -99,7 +99,17 @@ angular.module('userCenterController',[])
         vm.pdfKit = function(item){
             var  promsie = user.pdfKit(item._id).$promise;
             promsie.then(function(data){
-
+                $timeout(function(){
+                    location.href='http://localhost:3000'+data.download;
+                },1000)
+                //$http({
+                //    method:'GET',
+                //    headers:{
+                //        Accept:'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+                //    },
+                //    url:data.download
+                //}).success(function(){
+                //}).error(function(){})
             },function(err){
                 console.log(err);
             })

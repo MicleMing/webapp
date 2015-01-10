@@ -1,3 +1,65 @@
-<div style="min-height: 900px;">
-    <button class="btn btn-default" ng-click="vm.gotoLogin()">goto</button>
+<div style="margin-left: -15px;margin-right: -15px">
+    <div class="box box-1" id="n1">
+        <p>
+            <strong ng-click="vm.gotoArticle()">文&nbsp;章</strong>
+			<span>
+				昨夜西风凋碧树<br />
+				独上高楼，望尽天涯路
+			</span>
+        </p>
+
+    </div>
+    <div class="box box-2" id="n2">
+        <p>
+            <strong>在线聊天</strong>
+			<span>
+				衣带渐宽终不悔<br />
+				为伊消得人憔悴
+			</span>
+        </p>
+
+    </div>
+    <div class="box box-3" id="n3">
+        <p>
+            <strong>搜&nbsp;索</strong>
+			<span>
+				众里寻他千百度<br />
+				蓦然回首，那人却在灯火阑珊处。
+			</span>
+        </p>
+
+    </div>
+    <div class="slidecount">
+        <ul>
+            <li class="focus"><a href="javascript:0;">1</a></li>
+            <li><a href="javascript:0;">2</a></li>
+            <li><a href="javascript:0;">3</a></li>
+        </ul>
+    </div><!-- 指示区 -->
 </div>
+        <script type="text/javascript">
+            $(function(){
+                var oWinTop;
+                var oBoxH = $(".box").height();
+                var vLen = 0;
+                var vIndex = [];
+                $(".slidecount li").each(function(index){
+                    vLen = vLen + 1;
+                    vIndex.push($(this).index());
+                    $(this).bind('click',function(){
+                        $(window).scrollTop(index*939);
+                    })
+                });
+                $(window).scroll(function(){
+                    oWinTop = $(window).scrollTop();
+                    /* 这里为区域划分 */
+                    if(oWinTop >= 0 && oWinTop < oBoxH){
+                        $(".slidecount li:eq("+vIndex[0]+")").addClass("focus").siblings("li").removeClass("focus");
+                    }else if(oWinTop >= oBoxH && oWinTop < (oBoxH * vIndex[2])){
+                        $(".slidecount li:eq("+vIndex[1]+")").addClass("focus").siblings("li").removeClass("focus");
+                    }else{
+                        $(".slidecount li:eq("+vIndex[2]+")").addClass("focus").siblings("li").removeClass("focus");
+                    }
+                });
+            });
+        </script>

@@ -5,17 +5,17 @@
 }
 .backToTop a{
     display: block;
-    width: 50px;
-    height: 50px;
-    background-color: #cccccc;
+    width: 42px;
+    height: 42px;
+    background-color: #dddddd;
     margin-bottom: 2px;
-    border-radius: 3px;
+    border-radius: 5px;
 }
 .backToTop a:hover{
     background-color: #999999;
 }
 .backToTop a:nth-child(1)>span{
-    font-size: 35px;
+    font-size: 28px;
     line-height: 1.4em;
     padding-left: 6px;
     color:#666;

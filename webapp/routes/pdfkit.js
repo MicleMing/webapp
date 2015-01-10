@@ -28,7 +28,7 @@ module.exports = function(app){
                 })
                 doc.end()
                 res.status(200).send({
-                    download:'/public/pdf/'+article[0].title+'.pdf'
+                    download:'/pdf/'+article[0].title+'.pdf'
                 });
             }
         })

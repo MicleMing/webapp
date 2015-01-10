@@ -1,37 +1,42 @@
-<form class="form-horizontal" role="form" novalidate=""  name="register_form">
+<br/>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <form class="form-horizontal" role="form" novalidate=""  name="register_form">
 
-    <div class="form-group">
-        <label for="inputUsername" class="col-sm-2 control-label">UserName</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" ng-model="vm.user.username" required="" ng-pattern="/^[A-Za-z]{1}[0-9A-Za-z]{2,29}$/" id="inputUsername" placeholder="由字母、数字、下划线组成，以字母开头，3-30个字符">
-        </div>
-    </div>
+            <div class="form-group">
+                <label for="inputUsername" class="col-sm-2 control-label">用户名</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" ng-model="vm.user.username" required="" ng-pattern="/^[A-Za-z]{1}[0-9A-Za-z]{2,29}$/" id="inputUsername" placeholder="由字母、数字、下划线组成，以字母开头，3-30个字符">
+                </div>
+            </div>
 
-    <div class="form-group">
-        <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-        <div class="col-sm-10">
-            <input type="email" class="form-control" ng-model="vm.user.email" required=""  id="inputEmail" placeholder="email">
-        </div>
-    </div>
+            <div class="form-group">
+                <label for="inputEmail" class="col-sm-2 control-label">邮箱</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" ng-model="vm.user.email" required=""  id="inputEmail" placeholder="email">
+                </div>
+            </div>
 
-    <div class="form-group">
-        <label for="inputPassword" class="col-sm-2 control-label">Password</label>
-        <div class="col-sm-10">
-            <input type="password" class="form-control" ng-model="vm.user.password" required=""  ng-minlength="3" ng-maxlength="5" id="inputPassword" placeholder="password">
-        </div>
-    </div>
+            <div class="form-group">
+                <label for="inputPassword" class="col-sm-2 control-label">密码</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" ng-model="vm.user.password" required=""  ng-minlength="3" ng-maxlength="5" id="inputPassword" placeholder="password">
+                </div>
+            </div>
 
-    <div class="form-group">
-        <label for="inputPsdCheck" class="col-sm-2 control-label">Password</label>
-        <div class="col-sm-10">
-            <input type="password" class="form-control" ng-model="vm.user.psdcheck" required=""  ng-minlength="3" ng-maxlength="5" id="inputPsdCheck" placeholder="repeat password">
-        </div>
-    </div>
-    <p class="text-danger" ng-if="vm.flag">您两次输入的密码不一致，请重新输入！</p>
+            <div class="form-group">
+                <label for="inputPsdCheck" class="col-sm-2 control-label">确认密码</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" ng-model="vm.user.psdcheck" required=""  ng-minlength="3" ng-maxlength="5" id="inputPsdCheck" placeholder="repeat password">
+                </div>
+            </div>
+            <p class="text-danger" ng-if="vm.flag">您两次输入的密码不一致，请重新输入！</p>
 
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-success" ng-click="vm.registerUser(register_form)" ng-disabled="register_form.$invalid ">登陆</button>
-        </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default" ng-click="vm.registerUser(register_form)" ng-disabled="register_form.$invalid ">登陆</button>
+                </div>
+            </div>
+        </form>
     </div>
-</form>
+</div>

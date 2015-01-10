@@ -31,4 +31,11 @@ baseController.controller('baseCtrl',function($scope,$modal,$location,AuthServic
         ipCookie('keyword',keyword)
         $location.path('/search');
     }
+
+    /**
+     * @description 转跳到文章模块
+     */
+    vm.gotoArticle = function(){
+        $location.path('/article')
+    }
 })
