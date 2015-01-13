@@ -3,7 +3,7 @@
  */
 
 angular.module("publishController",[])
-    .controller("publishCtrl",function($rootScope,$scope,ipCookie,user,FileUploader,baseUrl){
+    .controller("publishCtrl",function($rootScope,$scope,$location,ipCookie,user,FileUploader,baseUrl){
         var author = ipCookie('access_token');
         var vm = $scope.vm = {
             article:{
@@ -27,7 +27,8 @@ angular.module("publishController",[])
                 $scope.$emit('success',{
                     title:'成功',
                     message:'文章发布成功'
-                })
+                });
+                $location.path('/article');
             },function(err){
                 console.log(err);
                 $scope.$emit('error',{

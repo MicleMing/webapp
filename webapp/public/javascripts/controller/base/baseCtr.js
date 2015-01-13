@@ -23,6 +23,7 @@ baseController.controller('baseCtrl',function($scope,$modal,$location,AuthServic
      */
     vm.signOut = function(){
         AuthService.signOut();
+        $location.path('/');
     };
     /**
      * @description 转跳到搜索页面
@@ -37,5 +38,12 @@ baseController.controller('baseCtrl',function($scope,$modal,$location,AuthServic
      */
     vm.gotoArticle = function(){
         $location.path('/article')
+    };
+
+    /**
+     * @description 转跳到在线聊天
+     */
+    vm.gotoChat = function(){
+        $location.path('/chat');
     }
 })

@@ -17,7 +17,7 @@ module.exports = function(app){
             }else{
                 var doc = new PDFDocument();
                 doc.pipe(fs.createWriteStream('./public/pdf/'+article[0].title+'.pdf'));
-                doc.font('/Windows/Fonts/simsunb.ttf')
+                doc.font('/Windows/Fonts/ygyxsziti2.0.ttf')
                     .fontSize(24)
                     .text(article[0].title.toString());
                 doc.moveDown();

@@ -6,35 +6,35 @@
             <div class="form-group">
                 <label for="inputUsername" class="col-sm-2 control-label">用户名</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" ng-model="vm.user.username" required="" ng-pattern="/^[A-Za-z]{1}[0-9A-Za-z]{2,29}$/" id="inputUsername" placeholder="由字母、数字、下划线组成，以字母开头，3-30个字符">
+                    <input type="text" class="form-control" ng-model="vm.user.username" required=""  id="inputUsername" placeholder="请填写用户名">
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="inputEmail" class="col-sm-2 control-label">邮箱</label>
                 <div class="col-sm-10">
-                    <input type="email" class="form-control" ng-model="vm.user.email" required=""  id="inputEmail" placeholder="email">
+                    <input type="email" class="form-control" ng-model="vm.user.email" required=""  id="inputEmail" placeholder="请填写邮箱">
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="inputPassword" class="col-sm-2 control-label">密码</label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" ng-model="vm.user.password" required=""  ng-minlength="3" ng-maxlength="5" id="inputPassword" placeholder="password">
+                    <input type="password" class="form-control" ng-model="vm.user.password" required=""  ng-minlength="3" ng-maxlength="5" id="inputPassword" placeholder="请填写密码">
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="inputPsdCheck" class="col-sm-2 control-label">确认密码</label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" ng-model="vm.user.psdcheck" required=""  ng-minlength="3" ng-maxlength="5" id="inputPsdCheck" placeholder="repeat password">
+                    <input type="password" class="form-control" ng-model="vm.user.psdcheck" required=""  ng-minlength="3" ng-maxlength="5" id="inputPsdCheck" placeholder="重复密码">
                 </div>
             </div>
             <p class="text-danger" ng-if="vm.flag">您两次输入的密码不一致，请重新输入！</p>
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default" ng-click="vm.registerUser(register_form)" ng-disabled="register_form.$invalid ">登陆</button>
+                    <button type="submit" class="btn btn-default" ng-click="vm.registerUser(register_form)" ng-disabled="register_form.$invalid ">注册</button>
                 </div>
             </div>
         </form>

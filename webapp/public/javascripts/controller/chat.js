@@ -2,7 +2,7 @@
  * Created by Administrator on 2015/1/7.
  */
 angular.module('chatController',[])
-    .controller('chatCtrl',function($scope,$rootScope,ipCookie){
+    .controller('chatCtrl',function($scope,$rootScope,$timeout){
         //console.log($rootScope.token+'  '+$rootScope.access_token)
         var vm = $scope.vm = {
             connect:false,
@@ -24,6 +24,13 @@ angular.module('chatController',[])
                 message:data.message
             });
            // vm.onlineUsers = data.onlineUsers;
+            console.log($rootScope.access_token);
+            if(data.callname == $rootScope.access_token){
+                vm.news = true;
+                $timeout(function(){
+                    vm.news = false
+                },5000);
+            }
             if(vm.connect == true || data.connect == true){
                 vm.onlineUsers = [];
                 for(var i in data.onlineUsers){
@@ -48,6 +55,15 @@ angular.module('chatController',[])
         })
 
         vm.sendMessage = function(){
-            socket.emit('sendchat',vm.message);
+            socket.emit('sendchat',{
+                message:vm.message,
+                callname:vm.callname
+            });
+            vm.message = "";
+            vm.callname="";
+        };
+        vm.callSomeone = function(name){
+            vm.message = '@'+name;
+            vm.callname = name;
         }
     });

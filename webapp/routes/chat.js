@@ -38,10 +38,11 @@ module.exports = function(app,server){
 
         });
         socket.on('sendchat',function(data){
-            console.log('sendchat');
+            console.log(data);
             io.sockets.emit('chat',{
                 username:socket.username,
-                message:data,
+                message:data.message,
+                callname:data.callname,
                 userCount:userCount,
                 onlineUsers:onlineUsers
             });

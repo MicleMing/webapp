@@ -14,7 +14,7 @@ angular.module("registerController",["Url"])
             }
             var promise = user.register(vm.user).$promise;
             promise.then(function(data){
-                AuthService.setToken(data.token_type,data.access_token);
+                AuthService.setToken(data.token_type,data.access_token,data.userId,data.email);
                 $scope.$emit('success',{
                     title:'成功',
                     message:'注册成功'
