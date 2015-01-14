@@ -25,19 +25,24 @@
         </div>
     </div>
     <div class="col-md-6 panel panel-success" style="margin-left:5px;">
-        <div class="panel-body">
+        <div class="panel-body article">
             <h3 class="text-muted">{{vm.article.title}}</h3>
             <h5>{{vm.article.author}}</h5>
             <article class="text-muted">{{vm.article.post}}</article>
-            <ul>
+            <ul class="picList">
                 <li ng-repeat="pic in vm.article.pictures">
-                    <img style="width:100%" ng-src="/images/user/{{pic}}"/>
+                    <img style="width:70%" ng-src="/images/user/{{pic}}"/>
                 </li>
             </ul>
 
         </div>
     </div>
 </div>
+<div class="row footerPos">
+    <div class="col-xs-12">
+        <div ng-include="'./views/common/footerDS.html'"></div>
+    </div>
+ </div>
 
 <script type="text/javascript">
     $(document).ready(function () {
