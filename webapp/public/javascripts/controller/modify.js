@@ -41,6 +41,11 @@ angular.module('modifyController',[])
                     message:'修改失败!'
                 })
             })
+        };
+
+        //修改图片
+        vm.modifyImage = function(){
+            $http.post('/test').success(function(data){}.error(function(err){}))
         }
 
     })

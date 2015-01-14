@@ -1,5 +1,6 @@
 
 var crypto = require('crypto'),
+    fs = require('fs');
     url = require('url'),
     User = require('../models/user.js'),
     Admin = require('../models/admin.js'),
@@ -185,6 +186,19 @@ module.exports = function(app){
     })
   });
 
+  //根据关键字查询文章
+  app.get('/article/listkey',function(req,res){
+    var keyword  = req.param('search');
+    Article.findByKeyWord(keyword,function(err,doc){
+      if(err){
+        res.status(400).send('bad request');
+      }else{
+        console.log(doc);
+        res.status(200).send(doc[0]);
+      }
+    })
+  })
+
   //删除文章
   app.delete('/article/admin/delete',function(req,res){
     var id = req.param('id');
@@ -192,6 +206,10 @@ module.exports = function(app){
       if(err){
         res.status(400).send('bad request');
       }else{
+        //console.log(doc);
+        doc.pictures.forEach(function(item){
+          fs.unlinkSync('./public/images/user/'+item);
+        })
         res.status(200).send('delete success');
       }
     })

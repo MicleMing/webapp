@@ -10,6 +10,7 @@
     "connect-mongo": "*",
     "ejs": "*",
     "express": "3.18.2",
+    "gm": "^1.17.0",
     "mongodb": "*",
     "multer": "0.1.6",
     "pdfkit": "^0.7.0",

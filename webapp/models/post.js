@@ -122,4 +122,27 @@ Post.modify = function(modify,callback){
             })
         })
     })
+};
+
+//正则查询
+Post.findByKeyWord = function(keyword,callback){
+    mongodb.open(function(err,db){
+        if(err){
+            return callback(err);
+        };
+        db.collection('posts',function(err,collection){
+            if(err){
+                mongodb.close();
+                return callback(err);
+            };
+            var pattern = new RegExp(keyword, "i");
+            collection.find({"$or":[{"title":pattern},{"post":pattern},{"author":pattern}]}).toArray(function(err,doc){
+                mongodb.close();
+                if(err){
+                    return callback(err);
+                };
+                return callback(null,doc);
+            })
+        })
+    })
 }

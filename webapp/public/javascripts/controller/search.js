@@ -20,10 +20,10 @@ angular.module('searchController',[])
         };
 
         vm.searchByJsonp = function(){
-            $http({
+/*            $http({
                 method: 'JSONP',
-                // url: "http://suggestion.baidu.com/sug?wd=" + vm.keyword + "&json=1&p=3&callback=JSON_CALLBACK"
-                url:"http://suggest.taobao.com/sug?code=utf-8&q=" + vm.keyword + "&callback=JSON_CALLBACK"
+                 url: "http://suggestion.baidu.com/sug?wd=" + vm.keyword + "&json=1&p=3&callback=JSON_CALLBACK"
+               // url:"http://suggest.taobao.com/sug?code=utf-8&q=" + vm.keyword + "&callback=JSON_CALLBACK"
                 // url:"http://ajax.googleapis.com/ajax/services/search/web? v=1.0&q="+vm.keyword+"&callback=JSON_CALLBACK"
                 //url:'http://api.douban.com/v2/book/24754123?callback=JSON_CALLBACK'
             }).success(function(data, status, headers, config) {
@@ -31,7 +31,15 @@ angular.module('searchController',[])
                 console.log(data);
 
             }).error(function(data, status, headers, config) {
-            });
+            });*/
+            $http({
+                method:'GET',
+                url:"/article/listkey",
+                params:{
+                    search:vm.keyword
+                }
+            }).success(function(data){console.log(data)})
+                .error(function(err){console.log(err)});
         }
         vm.searchByJsonp();
     })

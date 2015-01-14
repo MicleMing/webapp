@@ -8,6 +8,7 @@ var routes = require('./routes/index');
 var user = require('./routes/user');
 var chat = require('./routes/chat');
 var pdfkit = require('./routes/pdfkit');
+var imageMagick = require('./routes/imageMagick');
 var http = require('http');
 var path = require('path');
 var MongoStore = require('connect-mongo')(express);
@@ -56,6 +57,7 @@ if ('development' == app.get('env')) {
 
 routes(app);
 pdfkit(app);
+imageMagick(app);
 var server = http.createServer(app);
 chat(app,server);
 server.listen(app.get('port'), function(){
