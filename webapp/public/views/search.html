@@ -16,7 +16,10 @@
             </div>
             <div class="panel-body">
                 <ul>
-                    <li ng-repeat="item in vm.result">{{item[0]}}</li>
+                    <li style="cursor:pointer" ng-click="vm.gotoDetail(item)" ng-repeat="item in vm.searchRes">
+                        <p>{{item.title}}&nbsp;&nbsp;&nbsp;&nbsp;作者:{{item.author}}</p>
+                        <p>{{item.post|characterFilter:vm.keyword:40}}</p>
+                    </li>
                 </ul>
             </div>
         </div>

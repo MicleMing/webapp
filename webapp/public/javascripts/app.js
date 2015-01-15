@@ -19,6 +19,7 @@ angular.module('ngMyApp',[
     'searchController',
     'userCenterController',
     'modifyController',
+    'detailController',
     'baseFilter',
     'baseDirective',
     'ipCookie',

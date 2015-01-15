@@ -194,7 +194,7 @@ module.exports = function(app){
         res.status(400).send('bad request');
       }else{
         console.log(doc);
-        res.status(200).send(doc[0]);
+        res.status(200).send(doc);
       }
     })
   })

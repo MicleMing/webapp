@@ -2,7 +2,7 @@
  * Created by Administrator on 2015/1/8.
  */
 angular.module('searchController',[])
-    .controller('searchCtrl',function($scope,$http,ipCookie){
+    .controller('searchCtrl',function($scope,$http,$modal,ipCookie){
         //alert(ipCookie('keyword'))
         var vm = $scope.vm = {
             keyword:''
@@ -38,8 +38,31 @@ angular.module('searchController',[])
                 params:{
                     search:vm.keyword
                 }
-            }).success(function(data){console.log(data)})
+            }).success(function(data){
+                vm.searchRes = data;
+            })
                 .error(function(err){console.log(err)});
         }
         vm.searchByJsonp();
+        $scope.$watch("vm.keyword",function(newVal,oldVal){
+            if(newVal =="" || newVal==null){
+                vm.searchRes = []
+            }
+        })
+
+        //显示文章
+        vm.gotoDetail = function(article){
+            $scope.item = article;
+            var modalInstance = $modal.open({
+                templateUrl:'views/directiveTemplate/detail.html',
+                controller:'detailCtrl',
+                size:'lg',
+                resolve:{
+                    item:function(){
+                        return $scope.item
+                    }
+                }
+            })
+        };
+
     })

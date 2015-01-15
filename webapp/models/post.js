@@ -126,6 +126,9 @@ Post.modify = function(modify,callback){
 
 //正则查询
 Post.findByKeyWord = function(keyword,callback){
+    if(keyword=='' || keyword==null){
+        return callback(null,[]);
+    }
     mongodb.open(function(err,db){
         if(err){
             return callback(err);
